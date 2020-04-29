@@ -2,10 +2,11 @@
   "name": "chigorin-games",
   "version": "1.0.0",
   "description": "",
-  "main": "",
+  "main": "src/index.js",
+  "type": "module",
   "bin": {
-    "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-games": "bin/brain-games.js",
+    "brain-even": "bin/brain-even.js"
   },
   "files": [
     "dist"
