@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { askName, greeting } from '../src/cli.js';
+import { askName, greeting } from '../cli.js';
 
 const user = askName();
 greeting(user);
