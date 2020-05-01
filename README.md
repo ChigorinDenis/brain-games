@@ -1,2 +1,2 @@
 <a href="https://codeclimate.com/github/ChigorinDenis/frontend-project-lvl1/maintainability"><img src="https://api.codeclimate.com/v1/badges/bf85eb7cf0ca334c0e0a/maintainability" /></a>
-[![Build Status](https://travis-ci.org/ChigorinDenis/frontend-project-lvl1.svg?branch=master)](https://travis-ci.org/ChigorinDenis/frontend-project-lvl1)
+![](https://github.com/actions/frontend-project-lvl1/workflows/.github/workflows/main.yml/badge.svg)
