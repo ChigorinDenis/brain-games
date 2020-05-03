@@ -1,2 +1,3 @@
 <a href="https://codeclimate.com/github/ChigorinDenis/frontend-project-lvl1/maintainability"><img src="https://api.codeclimate.com/v1/badges/bf85eb7cf0ca334c0e0a/maintainability" /></a>
 ![](https://github.com/ChigorinDenis/frontend-project-lvl1/workflows/Node%20CI/badge.svg)
+<a href="https://asciinema.org/a/uUfM7IxWYGyObqonCyabiMnwp" target="_blank"><img src="https://asciinema.org/a/uUfM7IxWYGyObqonCyabiMnwp.svg" /></a>
