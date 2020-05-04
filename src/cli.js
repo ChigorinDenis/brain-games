@@ -1,44 +1,43 @@
 import readlineSync from 'readline-sync';
 
-export const askName = () => {
+export const greeting = () => {
+  console.log('Welcome to the Brain Games!');
   const name = readlineSync.question('May I have your name? ');
+  console.log(`Hi, ${name}!`);
   return name;
 };
 
-export const greeting = (name) => {
-  console.log('Welcome to the Brain Games!');
-  console.log(`Hi, ${name}!`);
+export const generateNum = (min, max) => {
+  const rand = min + Math.random() * (max + 1 - min);
+  return Math.floor(rand);
 };
 
-const generateNum = () => {
-  const rand = Math.random() * (99 - 1);
-  return Math.round(rand);
-};
-
-const isEven = (num) => {
+export const isEven = (num) => {
   if (num % 2 === 0) {
     return 'yes';
   }
   return 'no';
 };
 
-export const gameEven = (user) => {
-  console.log('Answer "yes" if the number is even, otherwise answer "no"');
-  let i;
-  for (i = 0; i < 3; i += 1) {
-    const num = generateNum();
-    console.log(`Question: ${num}`);
-    const answer = readlineSync.question('Your answer:');
-    if (isEven(num) === answer) {
-      console.log('Correct!');
-    } else {
-      console.log(`"${answer}" is wrong answer ;(. Correct answer was "${isEven(num)}"`);
-      break;
-    }
-  }
-  if (i === 3) {
-    console.log(`Congratulations, ${user}!`);
-  } else {
-    console.log(`Let's try again, ${user}`);
-  }
+
+export const generateSign = () => {
+  const operations = '+-*';
+  return operations[generateNum(0, 2)];
+};
+
+export const generatePair = () => ([
+  generateNum(0, 100),
+  generateNum(0, 100),
+]);
+
+export const getFirstElem = (pair) => (pair[0]);
+export const getSecondElem = (pair) => (pair[1]);
+
+export const action = (a, b, sign) => {
+  const actions = {
+    '+': () => (a + b),
+    '-': () => (a - b),
+    '*': () => (a * b),
+  };
+  return actions[sign]();
 };
