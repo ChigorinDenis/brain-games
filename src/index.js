@@ -1,5 +1,6 @@
 import gameEven from './games/game-even.js';
 import gameCalc from './games/game-calc.js';
+import gameGcd from './games/game-gcd.js';
 import { greeting } from './cli.js';
 
 const games = {
@@ -11,7 +12,10 @@ const games = {
     func: gameEven,
     msg: 'Answer "yes" if the number is even, otherwise answer "no"',
   },
-  'brain-games': 0,
+  'brain-gcd': {
+    func: gameGcd,
+    msg: 'Find the greatest common divisor of given numbers.',
+  },
 };
 
 const run = (gameName, n) => {
