@@ -1,6 +1,7 @@
 import gameEven from './games/game-even.js';
 import gameCalc from './games/game-calc.js';
 import gameGcd from './games/game-gcd.js';
+import gameProgession from './games/game-progression.js'
 import { greeting } from './cli.js';
 
 const games = {
@@ -15,6 +16,10 @@ const games = {
   'brain-gcd': {
     func: gameGcd,
     msg: 'Find the greatest common divisor of given numbers.',
+  },
+  'brain-progression': {
+    func: gameProgession,
+    msg: 'What number is missing in the progression?',
   },
 };
 

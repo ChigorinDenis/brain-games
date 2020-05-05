@@ -51,3 +51,20 @@ export const gcd = (a, b) => {
   }
   return gcd(a, b - a);
 };
+
+export const generateProgression = (n) => {
+  const a = generateNum(1, 100);
+  const d = generateNum(1, 10);
+  const progression = [];
+  for (let i = 0; i < n; i += 1) {
+    const elem = a + i * d;
+    progression.push(elem);
+  }
+  return progression;
+};
+
+export const toHideElem = (pos, arr) => {
+  const copy = [...arr];
+  copy.splice(pos, 1, '..');
+  return copy;
+};
