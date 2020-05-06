@@ -1,6 +1,5 @@
-import readlineSync from 'readline-sync';
 import {
-  generateProgression, generateNum, toHideElem,
+  generateProgression, generateNum, toHideElem, round,
 } from '../cli.js';
 
 const gameProgression = () => {
@@ -9,14 +8,8 @@ const gameProgression = () => {
   const result = progression[pos];
   const hiddenElemProg = toHideElem(pos, progression);
   const question = hiddenElemProg.join(' ');
-  console.log(`Question: ${question}`);
-  const answer = readlineSync.question('Your answer:');
-  if (result === Number(answer)) {
-    console.log('Correct!');
-    return true;
-  }
-  console.log(`"${answer}" is wrong answer ;(. Correct answer was "${result}"`);
-  return false;
+  const isWin = round(question, result, 'number');
+  return isWin;
 };
 
 export default gameProgression;

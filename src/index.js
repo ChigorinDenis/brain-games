@@ -1,7 +1,8 @@
 import gameEven from './games/game-even.js';
 import gameCalc from './games/game-calc.js';
 import gameGcd from './games/game-gcd.js';
-import gameProgession from './games/game-progression.js'
+import gamePrime from './games/game-prime.js';
+import gameProgession from './games/game-progression.js';
 import { greeting } from './cli.js';
 
 const games = {
@@ -20,6 +21,10 @@ const games = {
   'brain-progression': {
     func: gameProgession,
     msg: 'What number is missing in the progression?',
+  },
+  'brain-prime': {
+    func: gamePrime,
+    msg: 'Answer "yes" if given number is prime. Otherwise answer "no"',
   },
 };
 

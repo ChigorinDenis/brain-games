@@ -68,3 +68,35 @@ export const toHideElem = (pos, arr) => {
   copy.splice(pos, 1, '..');
   return copy;
 };
+
+export const isPrime = (num) => {
+  if (num < 2) {
+    return false;
+  }
+  if (num === 2) {
+    return true;
+  }
+  const limit = Math.floor(Math.sqrt(num));
+  for (let i = 2; i <= limit; i += 1) {
+    if (!(num % i)) {
+      return false;
+    }
+  }
+  return true;
+};
+
+export const round = (question, computed, typeAnswer = 'string') => {
+  const types = {
+    string: (arg) => arg,
+    number: (arg) => Number(arg),
+  };
+  const f = types[typeAnswer];
+  console.log(`Question: ${question}`);
+  const answer = readlineSync.question('Your answer:');
+  if (computed === f(answer)) {
+    console.log('Correct!');
+    return true;
+  }
+  console.log(`"${answer}" is wrong answer ;(. Correct answer was "${computed}"`);
+  return false;
+};
