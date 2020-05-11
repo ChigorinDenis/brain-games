@@ -1,12 +1,24 @@
-import {
-  generateNum, isEven, round,
-} from '../cli.js';
+import { generateNum, cons } from '../cli.js';
+import engine from '../index.js';
 
-const gameEven = () => {
-  const num = generateNum(0, 100);
-  const result = isEven(num);
-  const isWin = round(num, result);
-  return isWin;
+const isEven = (num) => {
+  if (num % 2 === 0) {
+    return 'yes';
+  }
+  return 'no';
 };
 
-export default gameEven;
+const gameInit = () => {
+  const f = () => {
+    const num = generateNum(0, 100);
+    const result = isEven(num);
+    return cons(num, result);
+  };
+  return f;
+};
+
+export default () => {
+  const msg = 'Answer "yes" if the number is even, otherwise answer "no"';
+  const init = gameInit();
+  engine(init, msg);
+};

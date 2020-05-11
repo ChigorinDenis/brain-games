@@ -1,40 +1,28 @@
-import gameEven from './games/game-even.js';
-import gameCalc from './games/game-calc.js';
-import gameGcd from './games/game-gcd.js';
-import gamePrime from './games/game-prime.js';
-import gameProgession from './games/game-progression.js';
-import { greeting } from './cli.js';
+import readlineSync from 'readline-sync';
+import { greeting, car, cdr } from './cli.js';
 
-const games = {
-  'brain-calc': {
-    func: gameCalc,
-    msg: 'What is the result of the expression?',
-  },
-  'brain-even': {
-    func: gameEven,
-    msg: 'Answer "yes" if the number is even, otherwise answer "no"',
-  },
-  'brain-gcd': {
-    func: gameGcd,
-    msg: 'Find the greatest common divisor of given numbers.',
-  },
-  'brain-progression': {
-    func: gameProgession,
-    msg: 'What number is missing in the progression?',
-  },
-  'brain-prime': {
-    func: gamePrime,
-    msg: 'Answer "yes" if given number is prime. Otherwise answer "no"',
-  },
+const round = (question, computed) => {
+  console.log(`Question: ${question}`);
+  const answer = readlineSync.question('Your answer:');
+  const typedAnswer = typeof computed === 'number' ? Number(answer) : answer;
+  if (computed === typedAnswer) {
+    console.log('Correct!');
+    return true;
+  }
+  console.log(`"${answer}" is wrong answer ;(. Correct answer was "${computed}"`);
+  return false;
 };
 
-const run = (gameName, n) => {
+const engine = (gameInit, msg) => {
   const user = greeting();
-  const game = games[gameName];
+  const n = 3;
   let i;
-  console.log(game.msg);
+  console.log(msg);
   for (i = 0; i < n; i += 1) {
-    const check = game.func();
+    const init = gameInit();
+    const question = car(init);
+    const computed = cdr(init);
+    const check = round(question, computed);
     if (!check) {
       break;
     }
@@ -46,4 +34,4 @@ const run = (gameName, n) => {
   }
 };
 
-export default run;
+export default engine;

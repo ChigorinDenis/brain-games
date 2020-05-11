@@ -1,17 +1,34 @@
-import {
-  generatePair, generateSign, action, getFirstElem, getSecondElem, round,
-} from '../cli.js';
+import { generateNum, cons } from '../cli.js';
+import engine from '../index.js';
 
-
-const gameCalc = () => {
-  const sign = generateSign();
-  const pair = generatePair();
-  const a = getFirstElem(pair);
-  const b = getSecondElem(pair);
-  const result = action(a, b, sign);
-  const question = `${a} ${sign} ${b}`;
-  const isWin = round(question, result, 'number');
-  return isWin;
+const generateSign = () => {
+  const operations = '+-*';
+  return operations[generateNum(0, 2)];
 };
 
-export default gameCalc;
+const action = (a, b, sign) => {
+  const actions = {
+    '+': () => (a + b),
+    '-': () => (a - b),
+    '*': () => (a * b),
+  };
+  return actions[sign]();
+};
+
+const gameInit = () => {
+  const f = () => {
+    const sign = generateSign();
+    const a = generateNum(0, 100);
+    const b = generateNum(0, 100);
+    const result = action(a, b, sign);
+    const question = `${a} ${sign} ${b}`;
+    return cons(question, result);
+  };
+  return f;
+};
+
+export default () => {
+  const msg = 'What is the result of the expression?';
+  const init = gameInit();
+  engine(init, msg);
+};

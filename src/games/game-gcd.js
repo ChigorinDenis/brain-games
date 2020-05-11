@@ -1,15 +1,29 @@
-import {
-  generatePair, getFirstElem, getSecondElem, gcd, round,
-} from '../cli.js';
+import { generateNum, cons } from '../cli.js';
+import engine from '../index.js';
 
-const gameGcd = () => {
-  const pair = generatePair();
-  const a = getFirstElem(pair);
-  const b = getSecondElem(pair);
-  const result = gcd(a, b);
-  const question = `${a} ${b}`;
-  const isWin = round(question, result, 'number');
-  return isWin;
+const gcd = (a, b) => {
+  if (a === b) {
+    return a;
+  }
+  if (a > b) {
+    return gcd(a - b, b);
+  }
+  return gcd(a, b - a);
 };
 
-export default gameGcd;
+const gameInit = () => {
+  const f = () => {
+    const a = generateNum(0, 100);
+    const b = generateNum(0, 100);
+    const result = gcd(a, b);
+    const question = `${a} ${b}`;
+    return cons(question, result);
+  };
+  return f;
+};
+
+export default () => {
+  const msg = 'Find the greatest common divisor of given numbers.';
+  const init = gameInit();
+  engine(init, msg);
+};
