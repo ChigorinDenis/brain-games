@@ -5,4 +5,4 @@ lint:
 publish:
 	npm publish --dry-run
 brain-games:
-	node src/bin/brain-games.js
+	node src/bin/brain-progression.js

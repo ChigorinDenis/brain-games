@@ -1,11 +1,17 @@
 import readlineSync from 'readline-sync';
-import { greeting, car, cdr } from './cli.js';
+import { car, cdr } from './cli.js';
+
+const greeting = () => {
+  console.log('Welcome to the Brain Games!');
+  const name = readlineSync.question('May I have your name? ');
+  console.log(`Hi, ${name}!`);
+  return name;
+};
 
 const round = (question, computed) => {
   console.log(`Question: ${question}`);
   const answer = readlineSync.question('Your answer:');
-  const typedAnswer = typeof computed === 'number' ? Number(answer) : answer;
-  if (computed === typedAnswer) {
+  if (computed === answer) {
     console.log('Correct!');
     return true;
   }
@@ -13,25 +19,21 @@ const round = (question, computed) => {
   return false;
 };
 
-const engine = (gameInit, msg) => {
+const engine = (initializeGame, msg) => {
   const user = greeting();
   const n = 3;
-  let i;
   console.log(msg);
-  for (i = 0; i < n; i += 1) {
-    const init = gameInit();
+  for (let i = 0; i < n; i += 1) {
+    const init = initializeGame();
     const question = car(init);
     const computed = cdr(init);
     const check = round(question, computed);
     if (!check) {
-      break;
+      console.log(`Let's try again, ${user}!`);
+      return;
     }
   }
-  if (i === n) {
-    console.log(`Congratulations, ${user}!`);
-  } else {
-    console.log(`Let's try again, ${user}!`);
-  }
+  console.log(`Congratulations, ${user}!`);
 };
 
 export default engine;

@@ -3,10 +3,10 @@ import engine from '../index.js';
 
 const generateSign = () => {
   const operations = '+-*';
-  return operations[generateNum(0, 2)];
+  return operations[generateNum(0, operations.length - 1)];
 };
 
-const action = (a, b, sign) => {
+const calculate = (a, b, sign) => {
   const actions = {
     '+': () => (a + b),
     '-': () => (a - b),
@@ -15,20 +15,16 @@ const action = (a, b, sign) => {
   return actions[sign]();
 };
 
-const gameInit = () => {
-  const f = () => {
-    const sign = generateSign();
-    const a = generateNum(0, 100);
-    const b = generateNum(0, 100);
-    const result = action(a, b, sign);
-    const question = `${a} ${sign} ${b}`;
-    return cons(question, result);
-  };
-  return f;
+const initializeGame = () => {
+  const sign = generateSign();
+  const a = generateNum(0, 100);
+  const b = generateNum(0, 100);
+  const result = calculate(a, b, sign);
+  const question = `${a} ${sign} ${b}`;
+  return cons(question, result.toString());
 };
 
 export default () => {
   const msg = 'What is the result of the expression?';
-  const init = gameInit();
-  engine(init, msg);
+  engine(initializeGame, msg);
 };

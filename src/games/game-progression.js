@@ -1,9 +1,7 @@
 import { generateNum, cons } from '../cli.js';
 import engine from '../index.js';
 
-const generateProgression = (n) => {
-  const a = generateNum(1, 100);
-  const d = generateNum(1, 10);
+const generateProgression = (a, d, n) => {
   const progression = [];
   for (let i = 0; i < n; i += 1) {
     const elem = a + i * d;
@@ -12,26 +10,26 @@ const generateProgression = (n) => {
   return progression;
 };
 
-const toHideElem = (pos, arr) => {
+const toHideElem = (position, arr) => {
   const copy = [...arr];
-  copy.splice(pos, 1, '..');
+  copy.splice(position, 1, '..');
   return copy;
 };
 
-const gameInit = () => {
-  const f = () => {
-    const progression = generateProgression(10);
-    const pos = generateNum(0, 9);
-    const result = progression[pos];
-    const hiddenElemProg = toHideElem(pos, progression);
-    const question = hiddenElemProg.join(' ');
-    return cons(question, result);
-  };
-  return f;
+
+const initializeGame = () => {
+  const startProgression = generateNum(1, 100);
+  const delta = generateNum(1, 10);
+  const lengthProgression = 10;
+  const progression = generateProgression(startProgression, delta, lengthProgression);
+  const position = generateNum(0, progression.length - 1);
+  const result = progression[position];
+  const hiddenElemProg = toHideElem(position, progression);
+  const question = hiddenElemProg.join(' ');
+  return cons(question, result.toString());
 };
 
 export default () => {
   const msg = 'What number is missing in the progression?';
-  const init = gameInit();
-  engine(init, msg);
+  engine(initializeGame, msg);
 };

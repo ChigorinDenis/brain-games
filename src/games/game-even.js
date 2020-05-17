@@ -8,17 +8,15 @@ const isEven = (num) => {
   return 'no';
 };
 
-const gameInit = () => {
-  const f = () => {
-    const num = generateNum(0, 100);
-    const result = isEven(num);
-    return cons(num, result);
-  };
-  return f;
+
+const initializeGame = () => {
+  const num = generateNum(0, 100);
+  const result = isEven(num);
+  return cons(num, result);
 };
+
 
 export default () => {
   const msg = 'Answer "yes" if the number is even, otherwise answer "no"';
-  const init = gameInit();
-  engine(init, msg);
+  engine(initializeGame, msg);
 };

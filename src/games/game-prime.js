@@ -17,17 +17,14 @@ export const isPrime = (num) => {
   return true;
 };
 
-const gameInit = () => {
-  const f = () => {
-    const num = generateNum(1, 101);
-    const result = isPrime(num) ? 'yes' : 'no';
-    return cons(num, result);
-  };
-  return f;
+
+const initializeGame = () => {
+  const num = generateNum(1, 100);
+  const result = isPrime(num) ? 'yes' : 'no';
+  return cons(num, result);
 };
 
 export default () => {
   const msg = 'Answer "yes" if given number is prime. Otherwise answer "no"';
-  const init = gameInit();
-  engine(init, msg);
+  engine(initializeGame, msg);
 };
