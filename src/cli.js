@@ -4,10 +4,12 @@ export const generateNum = (min, max) => {
 };
 
 export const cons = (a, b) => ([a, b]);
+
 export const car = (pair) => {
   const [a] = pair;
   return a;
 };
+
 export const cdr = (pair) => {
   const [, b] = pair;
   return b;

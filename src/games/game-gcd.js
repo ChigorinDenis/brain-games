@@ -11,8 +11,7 @@ const gcd = (a, b) => {
   return gcd(a, b - a);
 };
 
-
-const initializeGame = () => {
+const generateGameData = () => {
   const a = generateNum(0, 100);
   const b = generateNum(0, 100);
   const result = gcd(a, b);
@@ -22,5 +21,5 @@ const initializeGame = () => {
 
 export default () => {
   const msg = 'Find the greatest common divisor of given numbers.';
-  engine(initializeGame, msg);
+  engine(generateGameData, msg);
 };
