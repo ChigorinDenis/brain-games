@@ -1,5 +1,5 @@
-import { generateNum, cons } from '../cli.js';
-import engine from '../index.js';
+import { generateNum, makeData } from '../utils.js';
+import launchEngine from '../index.js';
 
 const getSign = () => {
   const operations = '+-*';
@@ -15,16 +15,16 @@ const calculate = (a, b, sign) => {
   return actions[sign]();
 };
 
-const generateGameData = () => {
+const generateDataGame = () => {
   const sign = getSign();
   const a = generateNum(0, 100);
   const b = generateNum(0, 100);
   const result = calculate(a, b, sign);
   const question = `${a} ${sign} ${b}`;
-  return cons(question, result.toString());
+  return makeData(question, result.toString());
 };
 
 export default () => {
-  const msg = 'What is the result of the expression?';
-  engine(generateGameData, msg);
+  const descriptionGame = 'What is the result of the expression?';
+  launchEngine(generateDataGame, descriptionGame);
 };

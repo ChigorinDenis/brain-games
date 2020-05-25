@@ -1,28 +1,28 @@
 import readlineSync from 'readline-sync';
-import { car, cdr } from './cli.js';
+import { getQuestion, getAnswer } from './utils.js';
 
-const round = (question, computed) => {
+const startRound = (question, computedAnswer) => {
   console.log(`Question: ${question}`);
   const answer = readlineSync.question('Your answer:');
-  if (computed === answer) {
+  if (computedAnswer === answer) {
     console.log('Correct!');
     return true;
   }
-  console.log(`"${answer}" is wrong answer ;(. Correct answer was "${computed}"`);
+  console.log(`"${answer}" is wrong answer ;(. Correct answer was "${computedAnswer}"`);
   return false;
 };
 
-const engine = (initializeGame, msg) => {
+const launchEngine = (dataGame, descriptionGame) => {
   console.log('Welcome to the Brain Games!');
   const userName = readlineSync.question('May I have your name? ');
   console.log(`Hi, ${userName}!`);
-  const n = 3;
-  console.log(msg);
-  for (let i = 0; i < n; i += 1) {
-    const init = initializeGame();
-    const question = car(init);
-    const computed = cdr(init);
-    const check = round(question, computed);
+  const numRounds = 3;
+  console.log(descriptionGame);
+  for (let i = 0; i < numRounds; i += 1) {
+    const data = dataGame();
+    const question = getQuestion(data);
+    const computedAnswer = getAnswer(data);
+    const check = startRound(question, computedAnswer);
     if (!check) {
       console.log(`Let's try again, ${userName}!`);
       return;
@@ -31,4 +31,4 @@ const engine = (initializeGame, msg) => {
   console.log(`Congratulations, ${userName}!`);
 };
 
-export default engine;
+export default launchEngine;

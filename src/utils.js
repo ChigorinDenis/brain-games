@@ -3,14 +3,14 @@ export const generateNum = (min, max) => {
   return Math.floor(rand);
 };
 
-export const cons = (a, b) => ([a, b]);
+export const makeData = (a, b) => ([a, b]);
 
-export const car = (pair) => {
+export const getQuestion = (pair) => {
   const [a] = pair;
   return a;
 };
 
-export const cdr = (pair) => {
+export const getAnswer = (pair) => {
   const [, b] = pair;
   return b;
 };

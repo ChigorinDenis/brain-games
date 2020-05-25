@@ -1,5 +1,5 @@
-import { generateNum, cons } from '../cli.js';
-import engine from '../index.js';
+import { generateNum, makeData } from '../utils.js';
+import launchEngine from '../index.js';
 
 const generateProgression = (a, d, n) => {
   const progression = [];
@@ -16,7 +16,7 @@ const hideElem = (position, arr) => {
   return copy;
 };
 
-const generateGameData = () => {
+const generateDataGame = () => {
   const startProgression = generateNum(1, 100);
   const delta = generateNum(1, 10);
   const lengthProgression = 10;
@@ -24,10 +24,10 @@ const generateGameData = () => {
   const position = generateNum(0, progression.length - 1);
   const result = progression[position];
   const question = hideElem(position, progression).join(' ');
-  return cons(question, result.toString());
+  return makeData(question, result.toString());
 };
 
 export default () => {
-  const msg = 'What number is missing in the progression?';
-  engine(generateGameData, msg);
+  const descriptionGame = 'What number is missing in the progression?';
+  launchEngine(generateDataGame, descriptionGame);
 };
