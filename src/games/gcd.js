@@ -1,5 +1,5 @@
 import { generateNum, makeData } from '../utils.js';
-import launchEngine from '../index.js';
+import playGame from '../index.js';
 
 const gcd = (a, b) => {
   if (a === b) {
@@ -11,7 +11,7 @@ const gcd = (a, b) => {
   return gcd(a, b - a);
 };
 
-const generateDataGame = () => {
+const generateGameData = () => {
   const a = generateNum(0, 100);
   const b = generateNum(0, 100);
   const result = gcd(a, b);
@@ -20,6 +20,6 @@ const generateDataGame = () => {
 };
 
 export default () => {
-  const descriptionGame = 'Find the greatest common divisor of given numbers.';
-  launchEngine(generateDataGame, descriptionGame);
+  const gameDescription = 'Find the greatest common divisor of given numbers.';
+  playGame(generateGameData, gameDescription);
 };

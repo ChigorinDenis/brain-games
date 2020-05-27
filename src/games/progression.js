@@ -1,7 +1,7 @@
 import { generateNum, makeData } from '../utils.js';
-import launchEngine from '../index.js';
+import playGame from '../index.js';
 
-const generateProgression = (a, d, n) => {
+const generateArithmeticProgression = (a, d, n) => {
   const progression = [];
   for (let i = 0; i < n; i += 1) {
     const elem = a + i * d;
@@ -10,24 +10,24 @@ const generateProgression = (a, d, n) => {
   return progression;
 };
 
-const hideElem = (position, arr) => {
+const hideElement = (position, arr) => {
   const copy = [...arr];
   copy.splice(position, 1, '..');
   return copy;
 };
 
-const generateDataGame = () => {
+const generateGameData = () => {
   const startProgression = generateNum(1, 100);
   const delta = generateNum(1, 10);
   const lengthProgression = 10;
-  const progression = generateProgression(startProgression, delta, lengthProgression);
+  const progression = generateArithmeticProgression(startProgression, delta, lengthProgression);
   const position = generateNum(0, progression.length - 1);
   const result = progression[position];
-  const question = hideElem(position, progression).join(' ');
+  const question = hideElement(position, progression).join(' ');
   return makeData(question, result.toString());
 };
 
 export default () => {
-  const descriptionGame = 'What number is missing in the progression?';
-  launchEngine(generateDataGame, descriptionGame);
+  const gameDescription = 'What number is missing in the progression?';
+  playGame(generateGameData, gameDescription);
 };

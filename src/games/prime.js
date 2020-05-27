@@ -1,5 +1,5 @@
 import { generateNum, makeData } from '../utils.js';
-import launchEngine from '../index.js';
+import playGame from '../index.js';
 
 export const isPrime = (num) => {
   if (num < 2) {
@@ -14,13 +14,13 @@ export const isPrime = (num) => {
   return true;
 };
 
-const generateDataGame = () => {
+const generateGameData = () => {
   const question = generateNum(1, 100);
   const result = isPrime(question) ? 'yes' : 'no';
   return makeData(question, result);
 };
 
 export default () => {
-  const descriptionGame = 'Answer "yes" if given number is prime. Otherwise answer "no"';
-  launchEngine(generateDataGame, descriptionGame);
+  const gameDescription = 'Answer "yes" if given number is prime. Otherwise answer "no"';
+  playGame(generateGameData, gameDescription);
 };
