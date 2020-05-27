@@ -1,11 +1,11 @@
 import { generateNum, makeData } from '../utils.js';
 import playGame from '../index.js';
 
-const generateArithmeticProgression = (a, d, n) => {
+const generateArithmeticProgression = (firstMember, delta, lengthProgression) => {
   const progression = [];
-  for (let i = 0; i < n; i += 1) {
-    const elem = a + i * d;
-    progression.push(elem);
+  for (let i = 0; i < lengthProgression; i += 1) {
+    const member = firstMember + i * delta;
+    progression.push(member);
   }
   return progression;
 };
@@ -17,10 +17,10 @@ const hideElement = (position, arr) => {
 };
 
 const generateGameData = () => {
-  const startProgression = generateNum(1, 100);
+  const firstMember = generateNum(1, 100);
   const delta = generateNum(1, 10);
   const lengthProgression = 10;
-  const progression = generateArithmeticProgression(startProgression, delta, lengthProgression);
+  const progression = generateArithmeticProgression(firstMember, delta, lengthProgression);
   const position = generateNum(0, progression.length - 1);
   const result = progression[position];
   const question = hideElement(position, progression).join(' ');
